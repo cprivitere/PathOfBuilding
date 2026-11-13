@@ -11,7 +11,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v7
               with:
                 ref: 'dev'
             - name: Apply patch
@@ -24,7 +24,7 @@ jobs:
                   git apply -v --reject --ignore-whitespace --index "$PATCH_FILE" || true
                 fi
             - name: Create Pull Request
-              uses: peter-evans/create-pull-request@v5
+              uses: peter-evans/create-pull-request@v8
               with:
                 title: "[pob2-port] ${{ github.event.client_payload.title }}"
                 branch: pob2-pr-${{ github.event.client_payload.id }}
