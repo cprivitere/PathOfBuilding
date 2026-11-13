@@ -7,11 +7,11 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v7
               with:
                 ref: 'dev'
             - name: Download DLLs
-              uses: robinraju/release-downloader@v1
+              uses: robinraju/release-downloader@v1.13
               with:
                 repository: ${{ github.repository_owner }}/PathOfBuilding-SimpleGraphic
                 tag: ${{ github.event.client_payload.tag }}
@@ -19,7 +19,7 @@ jobs:
                 extract: true
                 out-file-path: runtime
             - name: Create Pull Request
-              uses: peter-evans/create-pull-request@v5
+              uses: peter-evans/create-pull-request@v8
               with:
                 title: Update to SimpleGraphic ${{ github.event.client_payload.tag }}
                 branch: simple-graphic-${{ github.event.client_payload.tag }}
